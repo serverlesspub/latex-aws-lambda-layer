@@ -6,8 +6,13 @@ TEXMFLOCAL /opt/texlive/texmf-local
 TEXMFHOME /tmp/texmf
 TEXMFCONFIG /tmp/texmf-config
 TEXMFVAR /tmp/texmf-var
+binary_x86_64-linux 1
 collection-basic 1
 collection-latex 1
+collection-luatex 0
+collection-xetex 0
+collection-fontsrecommended 0
+collection-fontsextra 0
 tlpdbopt_autobackup 0
 tlpdbopt_backupdir tlpkg/backups
 tlpdbopt_create_formats 0

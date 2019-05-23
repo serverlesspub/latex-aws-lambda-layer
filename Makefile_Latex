@@ -37,7 +37,7 @@ pandoc-packages: $(TLMGR)
 		ifxetex ifluatex listings fancyvrb booktabs \
 		hyperref ulem geometry setspace babel upquote \
 		microtype parskip xurl oberdiek tools \
-		graphics footnotehyper mdwtools
+		graphics footnotehyper mdwtools etoolbox
 
 all: $(TLMGR) pandoc-packages
 

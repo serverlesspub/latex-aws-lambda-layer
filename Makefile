@@ -17,6 +17,12 @@ clean:
 bash:
 	$(DOCKER) $(MOUNTS) --entrypoint /bin/bash -t $(DOCKER_IMAGE)
 
+pdflatex:
+	$(DOCKER) $(MOUNTS) \
+		--env PATH=/opt/texlive/x86_64-linux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+		--entrypoint /opt/texlive/bin/x86_64-linux/pdflatex \
+		$(DOCKER_IMAGE) /var/task/test.latex
+
 all result/bin/x86_64-linux/latex: build result cache 
 	$(DOCKER) $(MOUNTS) --entrypoint /usr/bin/make -t $(DOCKER_IMAGE) TARGET_DIR=$(TARGET) -f ../Makefile_Latex $@
 
