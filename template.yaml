@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  TeXLive (LaTeX, pdf-latex) for Amazon Linux 2,
+  including packages and fonts required for Pandoc.
+
+  Check out https://github.com/serverlesspub/latex-aws-lambda-layer
+  for more information.
+Resources:
+  LatexLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: latex
+      Description: 'TeXLive (LaTeX, pdf-latex) for Amazon Linux 2'
+      ContentUri: build/layer.zip
+      CompatibleRuntimes:
+        - nodejs10.x
+      LicenseInfo: https://www.tug.org/texlive/LICENSE.TL
+      RetentionPolicy: Retain
+
+Outputs:
+  LayerVersion:
+    Description: Layer ARN Reference
+    Value: !Ref LatexLayer
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: latex-lambda-layer
+    Description: >
+      TeXLive (LaTeX, pdf-latex) for Amazon Linux 2,
+      including packages and fonts required for Pandoc.
+
+    Author: Gojko Adzic
+    SpdxLicenseId: Latex2e
+    LicenseUrl: LICENSE.md
+    ReadmeUrl: README-SAR.md 
+    Labels: ['layer', 'latex', 'pdflatex', 'lambda', 'texlive', 'pandoc']
+    HomePageUrl: https://github.com/serverlesspub/latex-aws-lambda-layer
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/serverlesspub/latex-aws-lambda-layer

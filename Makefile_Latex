@@ -9,7 +9,7 @@ $(TEXLIVE_SOURCE):
 	curl -LO http://mirror.ctan.org/systems/texlive/tlnet/$(TEXLIVE_SOURCE)
 
 $(MD5_pm):
-	yum install perl-Digest-MD5 -y
+	yum install -y perl-Digest-MD5
 
 $(WGET):
 	yum install -y wget

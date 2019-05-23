@@ -28,7 +28,16 @@ example.pdf:
 
 STACK_NAME ?= latex-layer 
 
-build/output.yaml: template.yaml result/bin/x86_64-linux/latex
+#result/texlive/bin/x86_64-linux/pdflatex: all
+
+build/layer.zip: result/texlive/bin/x86_64-linux/pdflatex build
+	# CloudFormation has trouble zipping texlive due to nested directory dept
+	#
+	# This is why we zip outside
+	
+	cd result && zip -ry $(PROJECT_ROOT)$@ *
+
+build/output.yaml: template.yaml build/layer.zip
 	aws cloudformation package --template $< --s3-bucket $(DEPLOYMENT_BUCKET) --output-template-file $@
 
 deploy: build/output.yaml
