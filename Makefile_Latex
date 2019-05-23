@@ -1,0 +1,37 @@
+PROJECT_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+CACHE_DIR=$(PROJECT_ROOT)build/cache
+
+.ONESHELL:
+
+### step 1: texlive installer 
+# see https://www.tug.org/texlive/acquire-netinstall.html
+TEXLIVE_SOURCE=install-tl-unx.tar.gz
+
+$(TEXLIVE_SOURCE):
+	curl -LO http://mirror.ctan.org/systems/texlive/tlnet/$(TEXLIVE_SOURCE)
+
+/usr/lib64/perl5/vendor_perl/Digest/MD5.pm: 
+	yum install perl-Digest-MD5 -y
+
+# see https://wiki.archlinux.org/index.php/TeX_Live
+TLMGR=/opt/texlive/bin/x86_64-linux/tlmgr
+$(TLMGR): $(TEXLIVE_SOURCE) /usr/lib64/perl5/vendor_perl/Digest/MD5.pm
+	tar xf $<
+	cd install-tl*
+	./install-tl --profile $(PROJECT_ROOT)texlive.profile
+
+## see https://pandoc.org/MANUAL.html
+pandoc-packages: $(TLMGR)
+	$(TLMGR) install xcolor amsfonts amsmath lm unicode-math \
+	ifxetex ifluatex listings fancyvrb longtable booktabs \
+	graphicx grffile hyperref xcolor ulem geometry \
+	setspace babel upquote microtype parskip xurl \
+	bookmark footnotehyper footnote
+
+all: $(TLMGR) pandoc-packages
+
+pandoc-xelatex-packages:
+	$(TLMGR) fontspec polyglossia xecjk bidi mathspec upquote microtype \
+		csquotes natbib biblatex bibtex biber 
+
+
