@@ -6,7 +6,7 @@ Intended for instances powered by Amazon Linux 2.x, such as the `nodejs10.x` run
 
 ## This layer requires Perl
 
-Note that this is work in progress, not ready for public usage yet. TeX Live requires a functioning `perl` executable, even at runtime, and this layer does not include that. You can add Perl to the same Lambda function using a third-party layer, for example <https://github.com/moznion/aws-lambda-perl5-layer>.
+TeX Live requires a functioning `perl` executable, even at runtime, and this layer does not include that. You can add Perl to the same Lambda function using a third-party layer, for example <https://github.com/moznion/aws-lambda-perl5-layer>.
 
 ## Usage
 
