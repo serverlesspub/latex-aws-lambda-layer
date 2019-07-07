@@ -4,7 +4,7 @@ TeX Live (including `latex` and `pdflatex`) for AWS Lambda, including packages a
 
 Intended for instances powered by Amazon Linux 2.x, such as the `nodejs10.x` runtime, and the updated 2018.03 Amazon Linux 1 runtimes
 
-## WORK IN PROGRESS!!!
+## This layer requires Perl
 
 Note that this is work in progress, not ready for public usage yet. TeX Live requires a functioning `perl` executable, even at runtime, and this layer does not include that. You can add Perl to the same Lambda function using a third-party layer, for example <https://github.com/moznion/aws-lambda-perl5-layer>.
 
