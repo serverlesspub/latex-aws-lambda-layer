@@ -33,7 +33,7 @@ $(TLMGR): $(TEXLIVE_SOURCE) $(WGET) $(MD5_pm)
 pandoc-packages: $(TLMGR)
 	$(TLMGR) install \
 		xcolor amsfonts amsmath lm unicode-math \
-		ifxetex ifluatex listings fancyvrb booktabs \
+		iftex listings fancyvrb booktabs \
 		hyperref ulem geometry setspace babel upquote \
 		microtype parskip xurl oberdiek tools \
 		graphics footnotehyper mdwtools etoolbox ec
